@@ -1,0 +1,34 @@
+ module.exports = function () {
+	 
+    var creepsByRole = { };
+	creepsByRole['harvester']     = {};
+	creepsByRole['upgrader']      = {};
+	creepsByRole['builder']       = {};
+	creepsByRole['transferCreep'] = {};
+	creepsByRole['harvestTender'] = {};
+	creepsByRole['fortifier']     = {};
+	creepsByRole['roomClaimer']   = {};
+	creepsByRole['sourceGuard']   = {};
+	
+	var creep = null;
+	//index the creeps by role
+	var count = 0;
+	for(var name in Game.creeps) {
+		creep = Game.creeps[name];
+		
+		
+		//sometimes we de-name something to pause it
+		if(!creepsByRole[creep.memory.role]) {
+			continue;
+		}
+		//console.log("classified creep " + creep.memory.role);
+		creepsByRole[creep.memory.role][name] = Game.creeps[name] ;
+		//console.log("type found" + creep.memory.role );
+		//console.log(creepsByRole[creep.memory.role][name]);
+		//console.log(creepsByRole[creep.memory.role].length);
+		//count++;
+	}
+	//console.log("classified :" + count);
+	//console.log("harvesters found" + creepsByRole['harvester'].length )
+	return creepsByRole;
+ };
